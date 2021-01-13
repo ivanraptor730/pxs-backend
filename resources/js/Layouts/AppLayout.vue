@@ -23,6 +23,12 @@
                                 <jet-nav-link :href="route('products.index')" :active="route().current('products.index')">
                                     Product Management
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('userdevices.index')" :active="route().current('userdevices.index')">
+                                    User Devices
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('videos.index')" :active="route().current('videos.index')">
+                                    Videos
+                                </jet-nav-link>
                             </div>
                         </div>
 

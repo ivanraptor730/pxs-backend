@@ -9,24 +9,22 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="card card-body shadow-sm">
                     <div class="ml-auto my-3">
-                        <button @click="openModal()" class="btn btn-primary">Add Product</button>
+                        <button @click="openModal()" class="btn btn-primary">Add User</button>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr class="bg-gray-100">
                                 <th class="px-4 py-2 w-20">ID</th>
-                                <th class="px-4 py-2">Name</th>
-                                <th class="px-4 py-2">Category</th>
-                                <th class="px-4 py-2">Description</th>
+                                <th class="px-4 py-2">Username/Email</th>
+                                <th class="px-4 py-2">Product</th>
                                 <th class="px-4 py-2" style="width:200px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="row in data">
                                 <td class="px-4 py-2">{{ row.id }}</td>
-                                <td class="px-4 py-2">{{ row.name }}</td>
-                                <td class="px-4 py-2">{{ row.category }}</td>
-                                <td class="px-4 py-2">{{ row.description }}</td>
+                                <td class="px-4 py-2">{{ row.ownername }}</td>
+                                <td class="px-4 py-2">{{ row.devicename }}</td>
                                 <td class="px-4 py-2">
                                     <button @click="edit(row)" class="btn btn-primary rounded my-1" style="width:60px">
                                         Edit
@@ -56,24 +54,21 @@
                                         <div class="">
                                             <div class="mb-4">
                                                 <label for="title"
-                                                    class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                                                <input type="text" class="form-control" id="title"
-                                                    placeholder="Enter Title" v-model="form.name">
+                                                    class="block text-gray-700 text-sm font-bold mb-2">Owner:</label>
+                                                <select class="form-control" id="category" v-model="form.ownerename">
+                                                    <option v-for="row in data3" :value="row.id">
+                                                        {{row.name}}
+                                                        </option>
+                                                </select>
                                             </div>
                                             <div class="mb-4">
                                                 <label for="category"
                                                     class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
-                                                <select class="form-control" id="category" v-model="form.category">
-                                                    <option value="Android">Android</option>
-                                                    <option value="iOS">iOS</option>
-                                                    <option value="Other">Other</option>
+                                                <select class="form-control" id="category" v-model="form.devicename">
+                                                    <option v-for="row in data3" :value="row.id">
+                                                        {{row.name}}
+                                                        </option>
                                                 </select>
-                                            </div>
-                                            <div class="mb-4">
-                                                <label for="description"
-                                                    class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
-                                                <textarea class="form-control" id="description"
-                                                    v-model="form.description" placeholder="Enter Body"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +136,7 @@
                 }
             },
             save: function (data) {
-                this.$inertia.post('/products', data)
+                this.$inertia.post('/userdevices', data)
                 this.reset();
                 this.closeModal();
                 this.editMode = false;
@@ -153,14 +148,14 @@
             },
             update: function (data) {
                 data._method = 'PUT';
-                this.$inertia.post('/products/' + data.id, data)
+                this.$inertia.post('/userdevices/' + data.id, data)
                 this.reset();
                 this.closeModal();
             },
             deleteRow: function (data) {
                 if (!confirm('Are you sure want to remove?')) return;
                 data._method = 'DELETE';
-                this.$inertia.post('/products/' + data.id, data)
+                this.$inertia.post('/userdevices/' + data.id, data)
                 this.reset();
                 this.closeModal();
             }

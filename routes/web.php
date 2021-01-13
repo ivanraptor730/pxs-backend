@@ -3,7 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserDevicesController;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +33,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('products', ProductsController::class);
+Route::resource('userdevices', UserDevicesController::class);
+Route::resource('videos', VideoController::class);
 
 
