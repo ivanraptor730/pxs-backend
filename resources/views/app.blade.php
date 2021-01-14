@@ -23,6 +23,9 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <!-- unpkg : use the latest version of Video.js -->
+    <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">
